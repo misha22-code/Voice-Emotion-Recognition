@@ -44,6 +44,6 @@ Voice-Emotion-Recognition/
 │── templates/
 │     └── index.html        # Frontend HTML
 │── static/                # CSS / assets (optional)
-│── requirements.txt       # Python dependencies 
+│── requirements.txt       # Python dependencies
 ```
 
