@@ -46,4 +46,84 @@ Voice-Emotion-Recognition/
 │── static/                # CSS / assets (optional)
 │── requirements.txt       # Python dependencies
 ```
+⚙️ Installation Guide
+1️⃣ Clone Repository
+git clone https://github.com/misha22-code/Voice-Emotion-Recognition.git
+cd Voice-Emotion-Recognition
+
+2️⃣ Create Virtual Environment
+python -m venv venv
+
+3️⃣ Activate Environment
+
+Windows
+
+venv\Scripts\activate
+
+
+Linux / macOS
+
+source venv/bin/activate
+
+4️⃣ Install Dependencies
+pip install -r requirements.txt
+
+▶️ Run the App Locally
+python app.py
+
+
+Open in browser:
+
+http://127.0.0.1:5000/
+
+
+Upload a .wav file and view the predicted emotion 
+
+🧠 How It Works
+
+Audio Upload – User uploads .wav file
+
+Feature Extraction – MFCC features extracted using librosa
+
+Prediction – TensorFlow model predicts emotion
+
+Display – Emotion shown on UI with animation
+
+🛠 Technologies Used
+
+Python
+
+Flask
+
+TensorFlow
+
+Librosa
+
+NumPy
+
+SoundFile
+
+HTML / CSS
+
+Gunicorn (deployment)
+
+☁️ Deployment
+
+You can deploy this project on:
+
+Render
+
+HuggingFace Spaces
+
+Just push the repository and configure a Python + Flask runtime.
+
+📜 License
+
+This project is open-source and free to use for learning and educational purposes.
+
+🌱 Final Note
+
+This project is part of my journey into AI, Machine Learning, Chatbots, and Intelligent Systems.
+More improvements and experiments will be added as I grow my skills 🚀
+
 
