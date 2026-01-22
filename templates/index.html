@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Voice Emotion Recognition</title>
 
@@ -28,7 +27,12 @@
         }
 
         h2 {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            opacity: 0.9;
         }
 
         input[type="file"] {
@@ -64,12 +68,17 @@
             border-radius: 12px;
         }
 
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0px);
@@ -88,6 +97,7 @@
 
     <div class="container">
         <h2>Voice Emotion Recognition</h2>
+        <p>Upload a .wav file to detect emotion using AI</p>
 
         <form action="/predict" method="POST" enctype="multipart/form-data">
             <input type="file" name="file" accept=".wav" id="audioFile" required>
@@ -95,20 +105,22 @@
             <button type="submit">Predict Emotion</button>
         </form>
 
-        <!-- Audio Player Preview -->
+        <!-- Audio Preview -->
         <audio id="audioPlayer" controls style="display: none;"></audio>
 
-        <!-- Prediction Output -->
+        <!-- Prediction Result -->
         {% if prediction %}
         <div class="result">
             Detected Emotion: <strong>{{ prediction }}</strong>
         </div>
         {% endif %}
 
+        <footer>
+            Maintained by Misha Noor | AI & ML Learner
+        </footer>
     </div>
 
     <script>
-        // Show audio preview after selecting file
         const fileInput = document.getElementById("audioFile");
         const audioPlayer = document.getElementById("audioPlayer");
 
@@ -122,5 +134,4 @@
     </script>
 
 </body>
-
 </html>
