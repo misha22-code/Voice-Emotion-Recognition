@@ -1,73 +1,83 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
 import tensorflow as tf
 import librosa
 import numpy as np
 import os
 
-# Initialize Flask app
 app = Flask(__name__)
+app.secret_key = "misha_secret_key"
 
-# Load trained emotion recognition model (loaded once)
-model = tf.keras.models.load_model("model/emotion_model.h5")
 
-# Emotion labels (same order as model training)
+model = tf.keras.models.load_model("model/emotion_model.keras")
+
 EMOTIONS = ["angry", "happy", "sad", "neutral", "fear", "disgust", "surprise"]
 
 
+users = {}
+
 def extract_features(file_path):
-    """
-    Extract MFCC features from an audio file
-    """
     audio, sr = librosa.load(file_path, sr=None)
     mfcc = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=40)
-    mfcc_scaled = np.mean(mfcc.T, axis=0)
-    return mfcc_scaled
+    return np.mean(mfcc.T, axis=0)
 
+#ROUTES 
 
 @app.route("/")
-def index():
-    """
-    Render home page
-    """
-    return render_template("index.html")
+def landing():
+    return render_template("landing.html")
 
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+        users[email] = password
+        return redirect(url_for("login"))
+    return render_template("signup.html")
 
-@app.route("/predict", methods=["POST"])
-def predict():
-    """
-    Handle audio upload and emotion prediction
-    """
-    if "file" not in request.files:
-        return render_template("index.html", prediction="No file uploaded")
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
 
-    file = request.files["file"]
+        if email in users and users[email] == password:
+            session["user"] = email
+            return redirect(url_for("emotion"))
+        else:
+            return "Invalid email or password"
 
-    if file.filename == "":
-        return render_template("index.html", prediction="No file selected")
+    return render_template("login.html")
 
-    # Save uploaded file
-    file_path = "uploaded.wav"
-    file.save(file_path)
+@app.route("/emotion", methods=["GET", "POST"])
+def emotion():
+    if "user" not in session:
+        return redirect(url_for("login"))
 
-    try:
-        # Feature extraction
+    prediction = None
+
+    if request.method == "POST":
+        file = request.files["file"]
+        file_path = "uploads/audio.wav"
+        file.save(file_path)
+
         features = extract_features(file_path)
         features = np.expand_dims(features, axis=0)
 
-        # Model prediction
-        prediction = model.predict(features)
-        predicted_label = EMOTIONS[np.argmax(prediction)]
+        result = model.predict(features)
+        prediction = EMOTIONS[np.argmax(result)]
 
-    except Exception as e:
-        predicted_label = "Error processing audio"
+        os.remove(file_path)
 
-    finally:
-        # Remove uploaded file after prediction
-        if os.path.exists(file_path):
-            os.remove(file_path)
+    return render_template("index.html", prediction=prediction)
 
-    return render_template("index.html", prediction=predicted_label)
+@app.route("/logout")
+def logout():
+    session.pop("user", None)
+    return redirect(url_for("login"))
 
+# ---------- RUN ----------
 
 if __name__ == "__main__":
+    os.makedirs("uploads", exist_ok=True)
     app.run(debug=True)

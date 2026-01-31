@@ -1,129 +1,147 @@
-# 🎤 Voice Emotion Recognition (Forked & Extended)
+🎙️ Voice Emotion Recognition Web App
 
-A Python-based web application that detects human emotions from voice audio using **TensorFlow** and **Flask**.  
-Users can upload a `.wav` audio file, listen to it, and receive real-time emotion predictions.
+A Flask-based Machine Learning web application that detects human emotions from voice recordings using a trained deep learning model.
+This project is designed as a final year project and demonstrates the integration of AI, ML, and Web Technologies.
 
-> 🔖 This project is **forked from the original work by Hamama Komal**.  
-> I am maintaining and extending this repository for **learning, experimentation, and future enhancements** in AI & Machine Learning.
+📌 Project Overview
 
----
+Voice Emotion Recognition helps analyze human emotions from speech signals.
+This system allows users to:
 
-## 👩‍💻 Maintained by
-**Misha Noor**  
-Mobile Application Developer transitioning into **AI & Machine Learning**  
-Interested in **Chatbots, AI Agents, and Intelligent Systems**
+Sign up and log in
 
----
+Upload or record voice samples
 
-## 🚀 My Learning Goals & Modifications
-- Understanding end-to-end ML project structure
-- Learning how to integrate **TensorFlow models with Flask**
-- Exploring **audio feature extraction (MFCCs)**
-- Improving documentation and UI
-- Planning future enhancements (chatbot & AI agent integration)
+Predict emotions such as Happy, Sad, Angry, Neutral, etc.
 
----
+View results on a clean and user-friendly interface
 
-## ✨ Features
-- 🎯 Predict emotions: **Angry, Happy, Sad, Neutral, Fear, Disgust, Surprise**
-- 📂 Upload `.wav` audio files via web interface
-- ▶️ Play audio before prediction
-- ⚡ Real-time emotion prediction using TensorFlow
-- 🎨 Modern UI with gradient background and animations
-- ☁️ Deployable on free platforms (Render, HuggingFace Spaces)
-
----
-
-## 🗂 Project Structure
-
-```text
-Voice-Emotion-Recognition/
-│── app.py                 # Flask backend
-│── model/
-│     └── emotion_model.keras   # Trained TensorFlow model
-│── templates/
-│     └── index.html        # Frontend HTML
-│── static/                # CSS / assets (optional)
-│── requirements.txt       # Python dependencies
-```
-⚙️ Installation Guide
-1️⃣ Clone Repository
-git clone https://github.com/misha22-code/Voice-Emotion-Recognition.git
-cd Voice-Emotion-Recognition
-
-2️⃣ Create Virtual Environment
-python -m venv venv
-
-3️⃣ Activate Environment
-
-Windows
-
-venv\Scripts\activate
-
-
-Linux / macOS
-
-source venv/bin/activate
-
-4️⃣ Install Dependencies
-pip install -r requirements.txt
-
-▶️ Run the App Locally
-python app.py
-
-
-Open in browser:
-
-http://127.0.0.1:5000/
-
-
-Upload a .wav file and view the predicted emotion 
-
-🧠 How It Works
-
-Audio Upload – User uploads .wav file
-
-Feature Extraction – MFCC features extracted using librosa
-
-Prediction – TensorFlow model predicts emotion
-
-Display – Emotion shown on UI with animation
-
-🛠 Technologies Used
+🧠 Technologies Used
+🔹 Backend
 
 Python
 
 Flask
 
-TensorFlow
+🔹 Machine Learning
 
-Librosa
+TensorFlow / Keras
+
+Pre-trained emotion recognition model (.keras)
+
+🔹 Frontend
+
+HTML5
+
+CSS3
+
+🔹 Others
 
 NumPy
 
-SoundFile
+Librosa (for audio processing)
 
-HTML / CSS
+📂 Folder Structure
+Voice-Emotion-Recognition/
+│
+├── model/
+│   └── emotion_model.keras
+│
+├── static/
+│   └── style.css
+│
+├── templates/
+│   ├── landing.html
+│   ├── login.html
+│   ├── signup.html
+│   └── index.html
+│
+├── uploads/
+│
+├── app.py
+├── requirements.txt
+└── README.md
 
-Gunicorn (deployment)
+🚀 How to Run the Project
+1️⃣ Clone the Repository
+git clone https://github.com/your-username/voice-emotion-recognition.git
+cd voice-emotion-recognition
 
-☁️ Deployment
+2️⃣ Create Virtual Environment (Recommended)
+python -m venv venv
+venv\Scripts\activate   # Windows
 
-You can deploy this project on:
+3️⃣ Install Dependencies
+pip install -r requirements.txt
 
-Render
+4️⃣ Run Flask App
+python app.py
 
-HuggingFace Spaces
+5️⃣ Open in Browser
+http://127.0.0.1:5000/
 
-Just push the repository and configure a Python + Flask runtime.
+🔐 Authentication System
 
-📜 License
+User Sign Up
 
-This project is open-source and free to use for learning and educational purposes.
+User Login
 
-🌱 Final Note
+Protected emotion recognition page
 
-This project is part of my journey into AI, Machine Learning, Chatbots, and Intelligent Systems.
-More improvements and experiments will be added as I grow my skills 🚀
+Clean separation of landing, auth, and main app pages
 
+🎨 UI Design
 
+Landing page with attractive color theme
+
+Authentication pages (Login / Signup) with minimal design
+
+Main emotion detection page uses a different color theme for clarity
+
+Fully responsive and easy to understand
+
+🎯 Features
+
+🎤 Voice upload support
+
+🧠 AI-based emotion prediction
+
+🔐 Authentication system
+
+🗂 Organized Flask structure
+
+📊 Accurate ML model
+
+🧪 Suitable for academic evaluation
+
+📚 Use Cases
+
+Academic projects
+
+Emotion analysis research
+
+AI & ML learning
+
+Human–computer interaction systems
+
+🏫 Final Year Project Note
+
+This project fulfills Final Year Project (FYP) requirements by demonstrating:
+
+Machine Learning implementation
+
+Web-based system design
+
+Practical AI application
+
+Clean architecture and documentation
+
+👩‍💻 Author
+
+Misha Noor
+BS Computer Science
+Final Year Project
+
+📄 License
+
+This project is for educational purposes only.
